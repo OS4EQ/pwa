@@ -4,7 +4,7 @@ Temporary Frontend Gatsby Site set up for Audiopedia
 
 ## Git commands
 - To add this online repo you can do: `git clone https://github.com/audiopedia-t4sg/pwa.git` which will make a new folder with all this code
-- To pull changes from the master branch: `git pull`
+- To pull changes from the master branch: `git pull origin master` (syntax git pull `the remote name, in this case origin` `the branch name, in this case master branch`)
 - To make a new branch: `git checkout -b new-branch-name`
 - To commit changes you've made: 1. `git add .` 2. `git commit -m "blah blah commit msg"`
 - To push changes to that new branch: `git push origin new-branch-name`
