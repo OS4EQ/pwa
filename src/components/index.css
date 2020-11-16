@@ -1,0 +1,12 @@
+tr {
+    width: 50%;
+}
+
+td {
+    font-size: 20px;
+}
+
+td:hover {
+    background-color: #8356b1;
+    color: white;
+}

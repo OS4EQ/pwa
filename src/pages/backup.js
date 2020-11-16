@@ -54,12 +54,22 @@ export default function AudioPlayer({ data }) {
 }
 
 export const query = graphql`
-  query allLanguages{
-    allLanguages{
-      id
-      name
-      audioUrl
-      published
+  query MyQuery {
+    swapi {
+      allSpecies {
+        edges {
+          node {
+            name
+            id
+            personConnection {
+              people {
+                name
+                id
+              }
+            }
+          }
+        }
+      }
     }
   }
 `
