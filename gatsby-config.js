@@ -26,12 +26,12 @@ module.exports = {
       resolve: "gatsby-source-graphql",
       options: {
         // Arbitrary name for the remote schema Query type
-        typeName: "SWAPI",
+        typeName: "AUDIOPEDIA",
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-        fieldName: "swapi",
+        fieldName: "audiopedia",
         // Url to query from
-        url: "https://swapi-graphql.netlify.app/.netlify/functions/index",
-        // url: "http://127.0.0.1:8000/graphql/",
+        // url: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        url: "http://127.0.0.1:8000/graphql/",
       },
     },
     `gatsby-transformer-sharp`,
