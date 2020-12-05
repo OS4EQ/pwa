@@ -1,16 +1,37 @@
 module.exports = {
   siteMetadata: {
-    title: `Temp Gatsby`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Audiopedia`,
+    description: `The world's most vital audiobook.`,
+    author: `@techforsocialgood`,
+    track: `How does cleanliness prevent sickness?`,
+    playlist: `Cleanliness`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `src`,
+    //     path: `${__dirname}/src/`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `data`,
+    //     path: `${__dirname}/src/data/`,
+    //   },
+    // },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-graphql",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        // Arbitrary name for the remote schema Query type
+        typeName: "AUDIOPEDIA",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "audiopedia",
+        // Url to query from
+        // url: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        url: "http://127.0.0.1:8000/graphql/",
       },
     },
     `gatsby-transformer-sharp`,
