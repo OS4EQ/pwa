@@ -23,6 +23,12 @@ module.exports = {
     //   },
     // },
     {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: 'http://127.0.0.1:8000/graphql/'
+      }
+    },
+    {
       resolve: "gatsby-source-graphql",
       options: {
         // Arbitrary name for the remote schema Query type

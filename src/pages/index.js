@@ -22,9 +22,10 @@ export default function IndexPage({ data }) {
 
       <Table striped bordered hover>
         <tbody>
-          {data.audiopedia.allLanguages.map(({ id, name }) => (
-            <tr key={id}>
-              <td><Link to={"/" + name}>{name}</Link></td>
+          {data.audiopedia.allLanguages.edges.map(({ node }) => (
+            <tr key={node.id}>
+              {/* <td><Link to={"/" + node.name}>{node.name}</Link></td> */}
+              <td><Link to="/audioplayer" state={{ language: node.id }}>{node.name}</Link></td>
             </tr>
           ))} 
         </tbody>
@@ -37,11 +38,13 @@ export default function IndexPage({ data }) {
 export const query = graphql`
   query LanguageQuery {
     audiopedia {
-      allLanguages{
-        id
-        name
-        audioUrl
-        published
+      allLanguages(published: true) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
       }
     }
   }
