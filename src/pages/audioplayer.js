@@ -23,9 +23,6 @@ export default function AudioPlayer({ location, data }) {
   const [url, setUrl] = useState(firstTrack.audioUrl);
   const [playlistTitle, setPlaylistTitle] = useState(firstPlaylist.title);
   const [trackTitle, setTrackTitle] = useState(firstTrack.title);
-  // const [url, setUrl] = useState("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-  // const [playlistTitle, setPlaylistTitle] = useState("Title of playlist");
-  // const [trackTitle, setTrackTitle] = useState("Title of track");
 
   // indices for currently playing topic, playlist, and track
   const [topicIndex, setTopicIndex] = useState(0);
@@ -34,7 +31,6 @@ export default function AudioPlayer({ location, data }) {
 
   // list of playlists in current topic 
   const [currentPlaylists, setCurrentPlaylists] = useState(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
-  // console.log(currentPlaylists);
   // list of tracks in current playlist
   const [currentTracks, setCurrentTracks] = useState(currentPlaylists[0].node.tracks.edges);
 
@@ -46,38 +42,55 @@ export default function AudioPlayer({ location, data }) {
     setPlaylistTitle(playlist); 
     setPlaylistIndex(playlistIndex);
     setTopicIndex(topicIndex);
+    setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
+    setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
   }
 
   // after audio ends, update state to next track
   function srcChange() {
+
     // check if reached last track in playlist
     if (trackIndex + 1 >= currentTracks.length) {
+
       // if reached last playlist in topic, move to new topic
-      if (playlistIndex >= currentPlaylists.length) {
+      if (playlistIndex + 1 >= currentPlaylists.length) {
         setTopicIndex(topicIndex + 1);
         setPlaylistIndex(0);
         setTrackIndex(0);
-        setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
-        setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+        // setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
+        // setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+
       //else move to new playlist
       } else {
         setPlaylistIndex(playlistIndex + 1);
         setTrackIndex(0);
-        setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+        // setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
       }
+
     // if not last track, increment track index
     } else {
       setTrackIndex(trackIndex + 1);
     }
 
+    // set current playlists & tracks
+    setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
+    setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+
     // get new track
-    const newTrack = currentTracks.find(e => e.index === trackIndex);
-    setUrl(newTrack.url); 
-    setTrackTitle(newTrack.title);
-    setPlaylistTitle(data.audiopedia.allTopics.edges[topicIndex].playlists.edges[playlistIndex].title); 
+    // const newTrack = currentTracks.find(e => e.index === trackIndex);
+    const newTrackIndex = currentTracks.findIndex(el => el.node.index === trackIndex);
+    const newTrack = currentTracks[newTrackIndex];
+    setUrl(newTrack.node.audioUrl); 
+    setTrackTitle(newTrack.node.title);
+    // data.audiopedia.allTopics.edges[0].node.playlists.edges[0].node
+    setPlaylistTitle(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges[playlistIndex].node.title); 
   }
 
-  console.log(data.audiopedia.allTopics.edges);
+  // console.log(data.audiopedia.allTopics.edges);
+  console.log(topicIndex);
+  console.log(playlistIndex);
+  console.log(trackIndex);
+  console.log(currentTracks);
 
   return (
     <Layout>
@@ -93,11 +106,11 @@ export default function AudioPlayer({ location, data }) {
       {/* audio player */}
       <div style={{ marginBottom: `1.45rem` }}>
         <Player 
-          autoplay={true}
-          autoPlayAfterSrcChange={true}
+          // autoplay={true}
           src={url}
           showSkipControls={true}
           customAdditionalControls={[]}
+          autoPlayAfterSrcChange={true}
           onEnded={() => srcChange()}
         />
       </div>

@@ -24,7 +24,6 @@ export default function IndexPage({ data }) {
         <tbody>
           {data.audiopedia.allLanguages.edges.map(({ node }) => (
             <tr key={node.id}>
-              {/* <td><Link to={"/" + node.name}>{node.name}</Link></td> */}
               <td><Link to="/audioplayer" state={{ language: node.id }}>{node.name}</Link></td>
             </tr>
           ))} 
