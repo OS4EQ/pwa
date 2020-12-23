@@ -23,6 +23,9 @@ export default function AudioPlayer({ location, data }) {
   const [url, setUrl] = useState(firstTrack.audioUrl);
   const [playlistTitle, setPlaylistTitle] = useState(firstPlaylist.title);
   const [trackTitle, setTrackTitle] = useState(firstTrack.title);
+  // const [url, setUrl] = useState("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+  // const [playlistTitle, setPlaylistTitle] = useState("Title of playlist");
+  // const [trackTitle, setTrackTitle] = useState("Title of track");
 
   // indices for currently playing topic, playlist, and track
   const [topicIndex, setTopicIndex] = useState(0);
