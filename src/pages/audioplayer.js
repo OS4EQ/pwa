@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Player from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -44,6 +44,10 @@ export default function AudioPlayer({ location, data }) {
     setTopicIndex(topicIndex);
     setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
     setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+    console.log(topicIndex);
+    console.log(playlistIndex);
+    console.log(trackIndex);
+    console.log(url);
   }
 
   // after audio ends, update state to next track
@@ -73,24 +77,47 @@ export default function AudioPlayer({ location, data }) {
     }
 
     // set current playlists & tracks
-    setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
-    setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+    // setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
+    // setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+    // console.log(currentPlaylists);
+    // console.log(currentTracks);
 
     // get new track
     // const newTrack = currentTracks.find(e => e.index === trackIndex);
-    const newTrackIndex = currentTracks.findIndex(el => el.node.index === trackIndex);
-    const newTrack = currentTracks[newTrackIndex];
-    setUrl(newTrack.node.audioUrl); 
-    setTrackTitle(newTrack.node.title);
-    // data.audiopedia.allTopics.edges[0].node.playlists.edges[0].node
-    setPlaylistTitle(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges[playlistIndex].node.title); 
+    // const newTrackIndex = currentTracks.findIndex(el => el.node.index === trackIndex);
+    // let newTrack = currentTracks[trackIndex];
+    // console.log(newTrack);
+    // console.log("-----");
+    // setUrl(newTrack.node.audioUrl); 
+    // setTrackTitle(newTrack.node.title);
+    // // data.audiopedia.allTopics.edges[0].node.playlists.edges[0].node
+    // setPlaylistTitle(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges[playlistIndex].node.title); 
   }
 
+  useEffect(() => {
+    setCurrentPlaylists(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges);
+  }, [topicIndex]);
+
+  useEffect(() => {
+    setCurrentTracks(currentPlaylists[playlistIndex].node.tracks.edges);
+  }, [playlistIndex]);
+
+  useEffect(() => {
+    let newTrack = currentTracks[trackIndex];
+    setUrl(newTrack.node.audioUrl); 
+    setTrackTitle(newTrack.node.title);
+    setPlaylistTitle(data.audiopedia.allTopics.edges[topicIndex].node.playlists.edges[playlistIndex].node.title); 
+    console.log(topicIndex);
+    console.log(playlistIndex);
+    console.log(trackIndex);
+    console.log(url);
+  }, [trackIndex]);
+
   // console.log(data.audiopedia.allTopics.edges);
-  console.log(topicIndex);
-  console.log(playlistIndex);
-  console.log(trackIndex);
-  console.log(currentTracks);
+  // console.log(topicIndex);
+  // console.log(playlistIndex);
+  // console.log(trackIndex);
+  // console.log(currentTracks);
 
   return (
     <Layout>
@@ -106,11 +133,11 @@ export default function AudioPlayer({ location, data }) {
       {/* audio player */}
       <div style={{ marginBottom: `1.45rem` }}>
         <Player 
-          // autoplay={true}
+          autoplay={true}
           src={url}
           showSkipControls={true}
           customAdditionalControls={[]}
-          autoPlayAfterSrcChange={true}
+          // autoPlayAfterSrcChange={true}
           onEnded={() => srcChange()}
         />
       </div>
