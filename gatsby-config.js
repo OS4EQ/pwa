@@ -7,35 +7,36 @@ module.exports = {
     playlist: `Cleanliness`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `src`,
-    //     path: `${__dirname}/src/`,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `data`,
-    //     path: `${__dirname}/src/data/`,
-    //   },
-    // },
     {
-      resolve: "gatsby-source-graphql",
+      resolve: `gatsby-plugin-react-helmet`
+    },
+    {
+      resolve: `gatsby-plugin-apollo`,
+      options: {
+        // uri: `http://127.0.0.1:8000/graphql/`
+        uri: `https://21jk0xralk.execute-api.us-east-2.amazonaws.com/dev/graphql/`
+        // uri: `https://ng6cf1taq8.execute-api.us-east-2.amazonaws.com/prod/graphql/`
+      }
+    },
+    {
+      resolve: `gatsby-source-graphql`,
       options: {
         // Arbitrary name for the remote schema Query type
-        typeName: "AUDIOPEDIA",
+        typeName: `Audiopedia`,
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-        fieldName: "audiopedia",
+        fieldName: `audiopedia`,
         // Url to query from
-        // url: "https://swapi-graphql.netlify.app/.netlify/functions/index",
-        url: "http://127.0.0.1:8000/graphql/",
-      },
+        // url: `http://127.0.0.1:8000/graphql/`
+        url: `https://21jk0xralk.execute-api.us-east-2.amazonaws.com/dev`
+        // url: `https://ng6cf1taq8.execute-api.us-east-2.amazonaws.com/prod`
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-sharp`
+    },
+    {
+      resolve: `gatsby-plugin-sharp`
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -45,11 +46,13 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png` // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`
+    }
   ],
 }

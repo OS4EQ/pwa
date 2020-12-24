@@ -5,9 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@apollo/client": "^3.2.9",
     "bootstrap": "^4.5.3",
     "gatsby": "^2.24.63",
     "gatsby-image": "^2.4.19",
+    "gatsby-plugin-apollo": "^3.0.2",
     "gatsby-plugin-manifest": "^2.4.30",
     "gatsby-plugin-offline": "^3.2.28",
     "gatsby-plugin-react-helmet": "^3.3.11",
@@ -26,6 +28,8 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
+    "kill-port": "^1.6.1",
+    "nodemon": "^2.0.6",
     "prettier": "2.1.1"
   },
   "keywords": [
@@ -35,6 +39,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop -p 3500",
+    "dev": "nodemon --exec 'kill-port --port 8000 && gatsby develop' --watch gatsby-node.js --watch package.json --watch gatsby-config.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
