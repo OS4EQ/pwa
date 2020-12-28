@@ -1,15 +1,6 @@
-# Temp Gatsby Site
+# Audiopedia PWA
 
-Temporary Frontend Gatsby Site set up for Audiopedia
-
-## Git commands
-- To add this online repo you can do: `git clone https://github.com/audiopedia-t4sg/pwa.git` which will make a new folder with all this code
-- To pull changes from the master branch: `git pull origin master` (syntax git pull `the remote name, in this case origin` `the branch name, in this case master branch`)
-- To make a new branch: `git checkout -b new-branch-name`
-- To commit changes you've made: 1. `git add .` 2. `git commit -m "blah blah commit msg"`
-- To push changes to that new branch: `git push origin new-branch-name`
-- To go back to master branch `git checkout master`
-- To go back to another existing branch `git checkout other-branch-name`
+Frontend Gatsby app for Audiopedia
 
 ## Get started
 
@@ -33,14 +24,3 @@ Temporary Frontend Gatsby Site set up for Audiopedia
 3.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
 
 4.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-## 🎓 Learning Gatsby
-
-Gatsby docs: https://www.gatsbyjs.com/docs/
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-default)
-
